@@ -1,0 +1,12 @@
+exemplo
+6 vertices
+7 arestas
+direcionado
+não simples
+vértices e atributos
+X: FIM='1' OUTRO=''
+Y: FIM='1' OUTRO=''
+Z: FIM='' OUTRO='1'
+A: FIM='' OUTRO=''
+B: FIM='' OUTRO=''
+C: FIM='' OUTRO=''
