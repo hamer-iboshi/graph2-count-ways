@@ -33,7 +33,10 @@ CFLAGS  = -std=c99 \
 	  -Wundef \
 	  -Wunsafe-loop-optimizations \
 	  -Wvolatile-register-var \
-	  -Wwrite-strings
+	  -Wwrite-strings \
+		-std=c++11
+
+CC=g++
 
 #------------------------------------------------------------------------------
 .PHONY : all clean
