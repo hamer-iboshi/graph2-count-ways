@@ -50,7 +50,7 @@ void printDot(graph g){
 	int j;
 	cout << "strict digraph resultado_exemplo {\n\n";
 	for(int i=0;i < (int) g.size(); i++){
-		cout << "\t" << g[i].name;
+		cout << "\t\"" << g[i].name << "\"";
 		j=0;
 		for(auto& p: g[i].atributes){
 			if(!j) cout << " [" << p.first << "=" << p.second;
@@ -62,7 +62,7 @@ void printDot(graph g){
 
 	for(int i=0;i < (int) g.size(); i++){
 				for(int j=0;j< (int) g[i].neighbors.size();j++){
-            cout << "\t" << g[i].name << " -> " << rdict[g[i].neighbors[j]] << "\n";
+            cout << "\t\"" << g[i].name << "\" -> \"" << rdict[g[i].neighbors[j]] << "\";\n";
         }
 	}
 	cout << "}\n";
