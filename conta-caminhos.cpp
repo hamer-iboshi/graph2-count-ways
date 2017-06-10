@@ -57,7 +57,8 @@ void printDot(graph g){
 			else cout << ", " << p.first << "=" << p.second;
 			j++;
     }
-		cout << "];\n";
+		if(j) cout << "];\n";
+		else cout << endl;
 	}
 
 	for(int i=0;i < (int) g.size(); i++){
@@ -79,10 +80,10 @@ vatr* DFS(int node){
 				}
 				//cout << "ind : " << G[node].neighbors[i] << endl;
 				for(auto iter = aux->begin(); iter != aux->end(); ++iter){
-					//	cout << " " << iter->first << " => " << iter->second << '\n';
+						//cout << " " << iter->first << " => " << iter->second << '\n';
 						auto search = G[node].atributes.find(iter->first);
 						if(search != G[node].atributes.end()) {
-							search->second++;
+							search->second+=iter->second;
 						}else{
 							G[node].atributes.insert({ iter->first,iter->second });
 						}
@@ -96,7 +97,7 @@ vatr* DFS(int node){
 int main(){
 		//ler GRAFO from .dot
 		Agraph_t *g = agread(stdin, NULL);
-		int root;
+		vi root; 
 		tgraph auxtg;
 		tatributes auxta;
 		char *auxname;
@@ -116,7 +117,7 @@ int main(){
 				dict.insert({auxtg.name,i});
 				rdict.insert({i,auxtg.name});
 				if(agcountuniqedges(g,v, 1, 0) == 0)
-						root = dict[auxtg.name];
+						root.push_back(dict[auxtg.name]);
 				for (Agsym_t *atributo=agnxtattr(g,AGNODE,NULL); atributo; atributo=agnxtattr(g,AGNODE,atributo)){
 						auxname = agxget(v, atributo);
 						if(atoi(auxname)){
@@ -146,7 +147,9 @@ int main(){
 		//printDict();
 		//printNodes(G);
 		//Start DFS
-		DFS(root);
+		for(i=0;i<(int)root.size();i++){
+			DFS(root[i]);
+		}
 		//printNodes(G);
 		printDot(G);
 		return 0;
