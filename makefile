@@ -1,7 +1,7 @@
 CFLAGS  = -std=c99 \
 	  -pipe \
 	  -ggdb3 -Wstrict-overflow=5 -fstack-protector-all \
-          -W -Wall -Wextra \
+							-W -Wextra \
 	  -Wbad-function-cast \
 	  -Wcast-align \
 	  -Wcast-qual \
@@ -34,7 +34,8 @@ CFLAGS  = -std=c99 \
 	  -Wunsafe-loop-optimizations \
 	  -Wvolatile-register-var \
 	  -Wwrite-strings \
-		-std=c++11
+		-std=c++11 \
+		-debug
 
 CC=g++
 
@@ -42,9 +43,9 @@ CC=g++
 .PHONY : all clean
 
 #------------------------------------------------------------------------------
-all : conta-caminhos
+all : componente-forte
 
-conta-caminhos : conta-caminhos.cpp
+componente-forte : componente-forte.cpp
 	$(CC) $(CFLAGS) \
 	      -Wno-cast-qual \
               -Wno-padded \
