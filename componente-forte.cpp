@@ -44,15 +44,16 @@ void printNodes(graph &g){
 		}
 }
 
-void printDot(graph &g){
+void printDot(graph &g, int c, vi &comp){
 	int j,i;
-	cout << "strict digraph resultado_exemplo {\n\n";
-	for(int i=0;i < (int) g.size(); i++){
-		cout << "\t\"" << g[i].name << "\"";
-		j=0;
-		cout << endl;
+	printf("strict digraph resultado_exemplo {\n\n");
+	for(i=0;i< c-1;i++){
+		printf("\tsubgraph cluster%d {\n",i+1); 
+		for(j=0;j< (int) g.size();j++) 
+			if(comp[j] == i+1)	printf("\t\t%s\n",rdict[j].c_str());
+		printf("\t}\n\n"); 
 	}
-
+	
 	for(i=0;i < (int) g.size(); i++){
 				for(j=0;j< (int) g[i].neighbors.size();j++){
             cout << "\t\"" << g[i].name << "\" -> \"" << rdict[g[i].neighbors[j]] << "\";\n";
@@ -160,8 +161,8 @@ int main(){
 			}
 		}
 		
-		for(int j=0;j < (int)G.size();j++) cout << comp[j] << "\t"<< rdict[j] << endl;
-		//printNodes(G);
-		//printDot(G);
+				///for(int j=0;j < (int)G.size();j++) cout << comp[j] << "\t"<< rdict[j] << endl;
+		//printNodes(G,comp);
+		printDot(G,c,comp);
 		return 0;
 }
